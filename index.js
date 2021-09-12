@@ -4,12 +4,18 @@
     - include the Date and time along with the quote to give it some temporal relatability?
     - maybe turn this array into an object where each key is a different character, the values of which being their quotes
     - maybe depending on the day you could get a different character and one of their quotes?
+    -SCRATCH ABOVE - new course will be to create a new cadet profile
+      - start with creating empty cadet object defining its properties
+      - for each property in the cadet object we're going to populate it with separate data sources
+      - properties of cadet object:
+        - favorite quote
+        - what color shirt
+        - hometown
+        - date of registry
 
 */
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date use date object to personalize message
-
-//object of star trek quotes - seven characters, 1 for each day
 
 const trekQuotes = {
   kirk: ["How we deal with death is at least as important as how we deal with life.", "They used to say that if man was meant to fly, he’d have wings. But he did fly. He discovered he had to.", "Without freedom of choice there is no creativity. The body dies.", "You know the greatest danger facing us is ourselves, an irrational fear of the unknown. But there’s no such thing as the unknown — only things temporarily hidden, temporarily not understood.", "Perhaps man wasn’t meant for paradise. Maybe he was meant to claw, to scratch all the way."],
@@ -26,10 +32,12 @@ const trekQuotes = {
 let date = new Date();
 
 const dateObj = {
-  day: date.getDate(),
+  day: date.getDay(),
   month: date.getMonth(),
   year: date.getFullYear()
 };
+
+console.log( 'dateobj', dateObj.day );
 
 const dayMap = {
   0: 'Monday',
@@ -41,7 +49,16 @@ const dayMap = {
   6: 'Sunday'
 };
 
-//so I'll also need a random number generator function to give me a random quote 
+const monthmap = {
+  0: 'January',
+  1: 'February',
+  2: 'Wedneday',
+  3: 'Thursday',
+  4: 'Friday',
+  5: 'Saturday',
+  6: 'Sunday'
+};
+
 // I need to cycle through the characters in the trek quotes object and randomly pull one of the characters based on a random number - could use a switch statement but there sounds like a lot of redundant code possibly unless I move that functionality into its module 
 
 const randomNumber = () =>
@@ -51,7 +68,7 @@ const randomNumber = () =>
 
 const chooseQuote = (name) =>
 {
-  let quoteIndex = Math.floor( Math.random() * trekQuotes[`${name}`].length + 1 );
+  let quoteIndex = Math.floor( Math.random() * trekQuotes[`${name}`].length - 1 );
 
   return trekQuotes[`${name}`][quoteIndex];
 };
@@ -59,15 +76,11 @@ const chooseQuote = (name) =>
 let characterPicker = randomNumber();
 let trekCharacters = Object.keys( trekQuotes );
 
-
-//console.log( chooseQuote('picard') );
-
 //I want a function taht does all the formatting work and pulls in all the data so I just have to call that 
 
 const messageFormatter = (name ) =>
 {
-  //based on name of character need to know their array position i think
-  return `Hello today is insert date function stuff here, Todays quote will come from ${ name }, let it guide your and amuse you on this day:
+  return `Hello today is ${dayMap[dateObj.day]}, Today's quote will come from ${ name }, let it guide and amuse you on this day:
   ${chooseQuote(name)}  
   `
 };
@@ -75,7 +88,8 @@ const messageFormatter = (name ) =>
 let character = trekCharacters[characterPicker];
 
 messageFormatter( character );
-
+//switch case is not necessary currently as my solution is too simple it would seem
+//to expand on this project I guess I could flush out the trek characters? i.e. in addition to the quote what else can i pull in besides the date? 
 switch ( character ) {
   case 'kirk':
     console.log(messageFormatter( character ));
