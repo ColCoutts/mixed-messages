@@ -41,7 +41,24 @@ const dayMap = {
   6: 'Sunday'
 };
 
+//so I'll also need a random number generator function to give me a random quote 
+// I need to cycle through the characters in the trek quotes object and randomly pull one of the characters based on a random number - could use a switch statement but there sounds like a lot of redundant code possibly unless I move that functionality into its module 
+
+const randomNumber = () =>
+{
+  return Math.floor( Math.random() * 8 )
+};
+
+const chooseQuote = (character) =>
+{
+  return Math.floor( Math.random() * character.length + 1 );
+};
+
+let characterPicker = randomNumber();
+let trekCharacters = Object.keys( trekQuotes );
 
 
-console.log( dayMap[0] );
+//would there be a benefit to doing a for in loop? I don't think theres a need to loop
+
+console.log( trekCharacters[characterPicker] );
 
