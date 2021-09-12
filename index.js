@@ -49,16 +49,55 @@ const randomNumber = () =>
   return Math.floor( Math.random() * 8 )
 };
 
-const chooseQuote = (character) =>
+const chooseQuote = (name) =>
 {
-  return Math.floor( Math.random() * character.length + 1 );
+  let quoteIndex = Math.floor( Math.random() * trekQuotes[`${name}`].length + 1 );
+
+  return trekQuotes[`${name}`][quoteIndex];
 };
 
 let characterPicker = randomNumber();
 let trekCharacters = Object.keys( trekQuotes );
 
 
-//would there be a benefit to doing a for in loop? I don't think theres a need to loop
+//console.log( chooseQuote('picard') );
 
-console.log( trekCharacters[characterPicker] );
+//I want a function taht does all the formatting work and pulls in all the data so I just have to call that 
 
+const messageFormatter = (name ) =>
+{
+  //based on name of character need to know their array position i think
+  return `Hello today is insert date function stuff here, Todays quote will come from ${ name }, let it guide your and amuse you on this day:
+  ${chooseQuote(name)}  
+  `
+};
+
+let character = trekCharacters[characterPicker];
+
+messageFormatter( character );
+
+switch ( character ) {
+  case 'kirk':
+    console.log(messageFormatter( character ));
+    break;
+  case 'spok':
+    console.log(messageFormatter( character ));
+    break;
+  case 'picard':
+    console.log(messageFormatter( character ));
+    break;
+  case 'worf':
+    console.log(messageFormatter( character ));
+    break;
+  case 'data':
+    console.log(messageFormatter( character ));
+    break;
+  case 'janeway':
+    console.log(messageFormatter( character ));
+    break;
+  case 'sisko':
+    console.log(messageFormatter( character ));
+    break;  
+  default:
+    console.log( 'apologies something went wrong.' );
+}
