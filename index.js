@@ -17,7 +17,9 @@
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date use date object to personalize message
 
-const trekQuotes = {
+const starTrekProfile = {
+  shirtColor: ['red', 'white', 'gold', 'gray', 'dark green', 'light green', 'blue'],
+  hometown: ['Omacron5', 'Tenagra', 'New York', 'Horseshoe Nebula'],
   kirk: ["How we deal with death is at least as important as how we deal with life.", "They used to say that if man was meant to fly, he’d have wings. But he did fly. He discovered he had to.", "Without freedom of choice there is no creativity. The body dies.", "You know the greatest danger facing us is ourselves, an irrational fear of the unknown. But there’s no such thing as the unknown — only things temporarily hidden, temporarily not understood.", "Perhaps man wasn’t meant for paradise. Maybe he was meant to claw, to scratch all the way."],
   spok: ["Insufficient facts always invite danger.", "Computers make excellent and efficient servants, but I have no wish to serve under them.", "The needs of the many outweigh the needs of the few, or the one.", "n critical moments, men sometimes see exactly what they wish to see.", "Loss of life is to be mourned, but only if the life was wasted.", "You Earth people have glorified violence for forty centuries. But you imprison those who employ it privately.", "It is the lot of 'man' to strive no matter how content he is."],
   picard: ["It is possible to commit no mistakes and still lose. That is not weakness, that is life.", "Seize the time... Live now! Make now always the most precious time. Now will never come again.", "The road from legitimate suspicion to rampant paranoia is very much shorter than we think.", "If we're going to be damned, let's be damned for what we really are.", "You cannot explain away a wantonly immoral act because you think that it is connected to some higher purpose."],
@@ -37,16 +39,14 @@ const dateObj = {
   year: date.getFullYear()
 };
 
-console.log( 'dateobj', dateObj.day );
-
 const dayMap = {
-  0: 'Monday',
-  1: 'Tuesday',
-  2: 'Wedneday',
-  3: 'Thursday',
-  4: 'Friday',
-  5: 'Saturday',
-  6: 'Sunday'
+  0: 'Sunday',
+  1: 'Monday',
+  2: 'Tuesday',
+  3: 'Wednesday',
+  4: 'Thursday',
+  5: 'Friday',
+  6: 'Saturday'
 };
 
 const monthmap = {
@@ -61,20 +61,28 @@ const monthmap = {
 
 // I need to cycle through the characters in the trek quotes object and randomly pull one of the characters based on a random number - could use a switch statement but there sounds like a lot of redundant code possibly unless I move that functionality into its module 
 
-const randomNumber = () =>
+let cadetProfile = {
+  registryDate: dateObj,
+  shirt: 'default',
+  hometown: 'default',
+  favoriteQuote: 'default',
+  welcomeMesssage: []
+}
+
+const randomNumber = (prop) =>
 {
-  return Math.floor( Math.random() * 8 )
+  return Math.floor( Math.random() * starTrekProfile[prop].length - 1 );
 };
 
 const chooseQuote = (name) =>
 {
-  let quoteIndex = Math.floor( Math.random() * trekQuotes[`${name}`].length - 1 );
+  let quoteIndex = Math.floor( Math.random() * starTrekProfile[`${name}`].length - 1 );
 
-  return trekQuotes[`${name}`][quoteIndex];
+  return starTrekProfile[`${name}`][quoteIndex];
 };
 
-let characterPicker = randomNumber();
-let trekCharacters = Object.keys( trekQuotes );
+//let characterPicker = randomNumber();
+let trekCharacters = Object.keys( starTrekProfile );
 
 //I want a function taht does all the formatting work and pulls in all the data so I just have to call that 
 
@@ -85,33 +93,54 @@ const messageFormatter = (name ) =>
   `
 };
 
-let character = trekCharacters[characterPicker];
+//let character = trekCharacters[characterPicker];
 
-messageFormatter( character );
-//switch case is not necessary currently as my solution is too simple it would seem
-//to expand on this project I guess I could flush out the trek characters? i.e. in addition to the quote what else can i pull in besides the date? 
-switch ( character ) {
-  case 'kirk':
-    console.log(messageFormatter( character ));
-    break;
-  case 'spok':
-    console.log(messageFormatter( character ));
-    break;
-  case 'picard':
-    console.log(messageFormatter( character ));
-    break;
-  case 'worf':
-    console.log(messageFormatter( character ));
-    break;
-  case 'data':
-    console.log(messageFormatter( character ));
-    break;
-  case 'janeway':
-    console.log(messageFormatter( character ));
-    break;
-  case 'sisko':
-    console.log(messageFormatter( character ));
-    break;  
-  default:
-    console.log( 'apologies something went wrong.' );
+//messageFormatter( character );
+
+for ( const prop in cadetProfile ) {
+  console.log( prop );
+  switch ( prop ) {
+    case 'registryDate':
+      let weekdayMap = cadetProfile.registryDate.day;
+      let registryMessage = `Thanks for joining Star Fleet on ${ dayMap[weekdayMap] } please verify the following information:`;
+      console.log( registryMessage);
+      cadetProfile.welcomeMesssage.push[registryMessage];
+      break;
+    case 'shirt':
+      let career = randomNumber( 'shirtColor' );
+      let shirtChoice = starTrekProfile.shirtColor[career];
+      console.log( career );
+
+    default:
+      console.log( 'sorry something went wrong' );
+  }
 }
+
+
+
+
+// switch ( character ) {
+//   case 'kirk':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'spok':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'picard':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'worf':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'data':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'janeway':
+//     console.log(messageFormatter( character ));
+//     break;
+//   case 'sisko':
+//     console.log(messageFormatter( character ));
+//     break;  
+//   default:
+//     console.log( 'apologies something went wrong.' );
+// }
