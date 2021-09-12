@@ -21,3 +21,14 @@ const trekQuotes = {
   sisko: ["That might be the most important thing to understand about Humans. It's the unknown that defines our existence. We are constantly searching, not just for answers to our questions, but for new questions.", "There is only one thing I want from you. Find something you love, then do it the best you can.", "Running may help for a little while, but sooner or later the pain catches up with you. And the only way to get rid of it is to stand your ground and face it.", "Even in the darkest moments, you can always find something that will make you smile."]
 }
 
+//date object to give day, month, year 
+
+let date = new Date();
+
+const dateObj = {
+  day: date.getDate(),
+  month: date.getMonth(),
+  year: date.getFullYear()
+}
+
+console.log( dateObj.year );
