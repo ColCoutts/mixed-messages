@@ -19,7 +19,7 @@ const trekQuotes = {
   worf: ["Thinking about what you can’t control only wastes energy and creates its own enemy.", "The men do not roar. The women roar. And hurl heavy objects.", "You are human. And among humans, females can achieve anything the males can.", "A warrior does not let a friend face danger alone.", "Do not approach me unannounced, especially when I’m eating!"],
   data: ["Could you please continue the petty bickering? I find it most intriguing.", "I am superior, sir, in many ways, but I would gladly give it up to be human.", "I would gladly risk feeling bad at times, if it also meant that I could taste my dessert.", "Early bird gets the worm? I believe Cmdr. Shelby erred. There is no evidence of avian or crawling vermicular lifeforms on Jouret IV."],
   sisko: ["That might be the most important thing to understand about Humans. It's the unknown that defines our existence. We are constantly searching, not just for answers to our questions, but for new questions.", "There is only one thing I want from you. Find something you love, then do it the best you can.", "Running may help for a little while, but sooner or later the pain catches up with you. And the only way to get rid of it is to stand your ground and face it.", "Even in the darkest moments, you can always find something that will make you smile."]
-}
+};
 
 //date object to give day, month, year 
 
@@ -29,6 +29,19 @@ const dateObj = {
   day: date.getDate(),
   month: date.getMonth(),
   year: date.getFullYear()
-}
+};
 
-console.log( dateObj.year );
+const dayMap = {
+  0: 'Monday',
+  1: 'Tuesday',
+  2: 'Wedneday',
+  3: 'Thursday',
+  4: 'Friday',
+  5: 'Saturday',
+  6: 'Sunday'
+};
+
+
+
+console.log( dayMap[0] );
+
