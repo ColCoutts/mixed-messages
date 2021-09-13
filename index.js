@@ -30,6 +30,7 @@ const starTrekProfile = {
   ]
 };
 
+console.log( starTrekProfile.favoriteQuote[0].kirk[3] );
 //date object to give day, month, year 
 
 let date = new Date();
