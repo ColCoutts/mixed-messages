@@ -1,20 +1,3 @@
-//NOTES
-/*
-  this will be a star trek message generator. MVP is currently slated to be an array of trek quotes that load each time index.js gets run. This is fairly simplistic so I'm trying to think of ways to spice this up. Some thoughts:
-    - include the Date and time along with the quote to give it some temporal relatability?
-    - maybe turn this array into an object where each key is a different character, the values of which being their quotes
-    - maybe depending on the day you could get a different character and one of their quotes?
-    -SCRATCH ABOVE - new course will be to create a new cadet profile
-      - start with creating empty cadet object defining its properties
-      - for each property in the cadet object we're going to populate it with separate data sources
-      - properties of cadet object:
-        - favorite quote
-        - what color shirt
-        - hometown
-        - date of registry
-
-*/
-
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date use date object to personalize message
 
 const starTrekProfile = {
@@ -49,18 +32,6 @@ const dayMap = {
   4: 'Thursday',
   5: 'Friday',
   6: 'Saturday'
-};
-
-//decide if I'll do the monthmap as well or no
-
-const monthmap = {
-  0: 'January',
-  1: 'February',
-  2: 'Wedneday',
-  3: 'Thursday',
-  4: 'Friday',
-  5: 'Saturday',
-  6: 'Sunday'
 };
 
 let cadetProfile = {
@@ -99,12 +70,12 @@ for ( const prop in cadetProfile ) {
   switch ( prop ) {
     case 'registryDate':
       let weekdayMap = cadetProfile.registryDate.day;
-      let registryMessage = `Thanks for joining Star Fleet on ${ dayMap[weekdayMap] } the ${cadetProfile.registryDate.dateNumber}, ${cadetProfile.registryDate.year} please verify the following information: \n`;
+      let registryMessage = `Thanks for joining Star Fleet on ${ dayMap[weekdayMap] } ${cadetProfile.registryDate.dateNumber}, ${cadetProfile.registryDate.year} please verify the following information: \n`;
       cadetProfile.welcomeMessage.push(registryMessage);
       break;
     case 'shirtColor':
       profileFiller( prop );
-      let shirtMessage = `Star Trek uses color coding to determine your station, based on your abilities you are now a ${ cadetProfile.shirtColor }. \n`;
+      let shirtMessage = `Star Trek uses color coding to determine your station, based on your abilities you now belong to the ${ cadetProfile.shirtColor } department. \n`;
       cadetProfile.welcomeMessage.push(shirtMessage);
       break;
     case 'hometown':
@@ -114,7 +85,7 @@ for ( const prop in cadetProfile ) {
       break;
     case 'favoriteQuote':
       chooseQuote( prop );
-      let quoteMessage = `And finally, you favorite quote from throughout Star Fleets storied history is: \n "${ cadetProfile.favoriteQuote.quote }" \n by our very own ${ cadetProfile.favoriteQuote.actor }`;
+      let quoteMessage = `And finally, your favorite quote from throughout Star Fleets storied history is: \n "${ cadetProfile.favoriteQuote.quote }" \n by our very own ${ cadetProfile.favoriteQuote.actor }`;
       cadetProfile.welcomeMessage.push(quoteMessage);
       break;
     case 'welcomeMessage':
@@ -128,4 +99,5 @@ const cadetDebriefFormatter = ( cadet ) =>
 {
   return console.log(cadet.welcomeMessage.join(''))
 }
+
 cadetDebriefFormatter( cadetProfile );
